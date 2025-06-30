@@ -1,0 +1,17 @@
+FROM node:latest
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install
+
+RUN npm run build
+
+RUN apt-get update && apt-get install -y nginx
+
+RUN cp -R /app/build/* /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
