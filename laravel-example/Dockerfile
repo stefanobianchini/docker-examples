@@ -24,6 +24,8 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # Copia i file del progetto Laravel
 COPY . /var/www
 
+RUN composer install
+
 # Copia configurazione Nginx
 COPY ./docker/nginx/default.conf /etc/nginx/sites-available/default
 
